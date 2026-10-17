@@ -12,6 +12,14 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Show project structure
+        run: |
+          ls -la
+          echo "---"
+          cat mod.json
+          echo "---"
+          cat CMakeLists.txt
+
       - name: Install system dependencies
         run: |
           sudo apt-get update
@@ -30,6 +38,10 @@ jobs:
           chmod +x geode
           echo "$GITHUB_WORKSPACE" >> $GITHUB_PATH
 
+      - name: Verify Geode CLI
+        run: |
+          geode --version
+
       - name: Install Geode SDK
         run: |
           geode sdk install || true
@@ -40,6 +52,7 @@ jobs:
 
       - name: Build mod for Android ARM64
         run: |
+          set -x
           geode build -p android64
 
       - name: Upload .geode artifact
