@@ -12,13 +12,12 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Show project structure
+      - name: Show working directory and project files
         run: |
+          pwd
           ls -la
           echo "---"
-          cat mod.json
-          echo "---"
-          cat CMakeLists.txt
+          ls -la trail-lab/ 2>/dev/null || echo "no trail-lab subdir"
 
       - name: Install system dependencies
         run: |
@@ -38,21 +37,18 @@ jobs:
           chmod +x geode
           echo "$GITHUB_WORKSPACE" >> $GITHUB_PATH
 
-      - name: Verify Geode CLI
-        run: |
-          geode --version
-
-      - name: Install Geode SDK
-        run: |
-          geode sdk install || true
-
-      - name: Install Geode Android binaries
+      - name: Install Geode SDK binaries
         run: |
           geode sdk install-binaries -p android64 || true
 
       - name: Build mod for Android ARM64
         run: |
-          set -x
+          # Handle nested checkout directory
+          if [ -d trail-lab ]; then
+            cd trail-lab
+          fi
+          pwd
+          ls -la
           geode build -p android64
 
       - name: Upload .geode artifact
@@ -63,3 +59,5 @@ jobs:
           path: |
             **/*.geode
             build-android64/*.geode
+            trail-lab/**/*.geode
+            trail-lab/build-android64/*.geode
