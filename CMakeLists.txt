@@ -19,7 +19,6 @@ add_library(TrailLab SHARED ${SOURCES})
 
 target_include_directories(TrailLab PRIVATE include)
 
-# Geode mod setup - this is provided by the Geode build system
 setup_geode_mod(TrailLab)
 
 # Android-specific settings
