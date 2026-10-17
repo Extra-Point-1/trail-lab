@@ -12,20 +12,27 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Install Android NDK
+      - name: Install system dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y openjdk-17-jdk wget unzip cmake ninja-build git curl zip
+          sudo apt-get install -y openjdk-17-jdk wget unzip cmake ninja-build git curl zip xz-utils
+
+      - name: Download Android NDK
+        run: |
           wget -q https://dl.google.com/android/repository/android-ndk-r25c-linux.zip -O ndk.zip
           unzip -q ndk.zip
           echo "ANDROID_NDK_ROOT=$GITHUB_WORKSPACE/android-ndk-r25c" >> $GITHUB_ENV
 
       - name: Download Geode CLI
         run: |
-          curl -L -o geode-cli.zip https://github.com/geode-sdk/cli/releases/download/v3.9.0/geode-cli-v3.9.0-linux.zip
+          curl -L -s -o geode-cli.zip https://github.com/geode-sdk/cli/releases/download/v3.9.0/geode-cli-v3.9.0-linux.zip
           unzip -q geode-cli.zip
           chmod +x geode
           echo "$GITHUB_WORKSPACE" >> $GITHUB_PATH
+
+      - name: Install Geode SDK
+        run: |
+          geode sdk install || true
 
       - name: Install Geode Android binaries
         run: |
