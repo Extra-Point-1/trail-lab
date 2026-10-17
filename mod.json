@@ -1,0 +1,630 @@
+{
+	"id": "trail-lab",
+	"name": "Trail Lab",
+	"version": "1.0.0",
+	"geode": "5.11.2",
+	"gd": "2.208",
+	"developer": "TrailLabTeam",
+	"description": "Advanced trail customization tool for Geometry Dash. Customize trail length, width, opacity, glow, and color per game mode with presets and live preview.",
+	"summary": "Customize Geometry Dash trails per game mode",
+	"platforms": {
+		"android": true
+	},
+	"settings": [
+		{
+			"type": "TitleSetting",
+			"name": "General Settings",
+			"description": "Global settings for Trail Lab"
+		},
+		{
+			"type": "BoolSetting",
+			"name": "Enable Mod",
+			"key": "mod-enabled",
+			"description": "Enable or disable Trail Lab entirely",
+			"default": true
+		},
+		{
+			"type": "BoolSetting",
+			"name": "Live Preview",
+			"key": "live-preview",
+			"description": "Show live preview of trail changes in menu",
+			"default": false,
+			"platforms": {
+				"android": true
+			}
+		},
+		{
+			"type": "ButtonSetting",
+			"name": "Restore Defaults",
+			"key": "restore-defaults",
+			"description": "Reset all settings to their default values",
+			"platforms": {
+				"android": true
+			}
+		},
+		{
+			"type": "TitleSetting",
+			"name": "Wave Trail Settings",
+			"description": "Customize Wave trail appearance",
+			"platforms": {
+				"android": true
+			}
+		},
+		{
+			"type": "BoolSetting",
+			"name": "Enabled",
+			"key": "wave-enabled",
+			"description": "Enable custom Wave trail",
+			"default": false,
+			"platforms": {
+				"android": true
+			}
+		},
+		{
+			"type": "FloatSetting",
+			"name": "Length",
+			"key": "wave-length",
+			"description": "Wave trail length (fade time in seconds)",
+			"default": 0.5,
+			"min": 0.1,
+			"max": 3.0,
+			"slider": true,
+			"platforms": {
+				"android": true
+			}
+		},
+		{
+			"type": "FloatSetting",
+			"name": "Width",
+			"key": "wave-width",
+			"description": "Wave trail width (stroke)",
+			"default": 5.0,
+			"min": 1.0,
+			"max": 20.0,
+			"slider": true,
+			"platforms": {
+				"android": true
+			}
+		},
+		{
+			"type": "FloatSetting",
+			"name": "Opacity",
+			"key": "wave-opacity",
+			"description": "Wave trail opacity (0-1)",
+			"default": 1.0,
+			"min": 0.0,
+			"max": 1.0,
+			"slider": true,
+			"platforms": {
+				"android": true
+			}
+		},
+		{
+			"type": "Color3BSetting",
+			"name": "Color",
+			"key": "wave-color",
+			"description": "Wave trail color",
+			"default": [255, 255, 255],
+			"platforms": {
+				"android": true
+			}
+		},
+		{
+			"type": "BoolSetting",
+			"name": "No Pulse",
+			"key": "wave-no-pulse",
+			"description": "Disable pulse effects on Wave trail",
+			"default": false,
+			"platforms": {
+				"android": true
+			}
+		},
+		{
+			"type": "TitleSetting",
+			"name": "Ship Trail Settings",
+			"description": "Customize Ship trail appearance",
+			"platforms": {
+				"android": true
+			}
+		},
+		{
+			"type": "BoolSetting",
+			"name": "Enabled",
+			"key": "ship-enabled",
+			"description": "Enable custom Ship trail",
+			"default": false,
+			"platforms": {
+				"android": true
+			}
+		},
+		{
+			"type": "FloatSetting",
+			"name": "Length",
+			"key": "ship-length",
+			"description": "Ship trail length (fade time in seconds)",
+			"default": 0.5,
+			"min": 0.1,
+			"max": 3.0,
+			"slider": true,
+			"platforms": {
+				"android": true
+			}
+		},
+		{
+			"type": "FloatSetting",
+			"name": "Width",
+			"key": "ship-width",
+			"description": "Ship trail width (stroke)",
+			"default": 5.0,
+			"min": 1.0,
+			"max": 20.0,
+			"slider": true,
+			"platforms": {
+				"android": true
+			}
+		},
+		{
+			"type": "FloatSetting",
+			"name": "Opacity",
+			"key": "ship-opacity",
+			"description": "Ship trail opacity (0-1)",
+			"default": 1.0,
+			"min": 0.0,
+			"max": 1.0,
+			"slider": true,
+			"platforms": {
+				"android": true
+			}
+		},
+		{
+			"type": "Color3BSetting",
+			"name": "Color",
+			"key": "ship-color",
+			"description": "Ship trail color",
+			"default": [255, 255, 255],
+			"platforms": {
+				"android": true
+			}
+		},
+		{
+			"type": "BoolSetting",
+			"name": "No Pulse",
+			"key": "ship-no-pulse",
+			"description": "Disable pulse effects on Ship trail",
+			"default": false,
+			"platforms": {
+				"android": true
+			}
+		},
+		{
+			"type": "TitleSetting",
+			"name": "Cube Trail Settings",
+			"description": "Customize Cube trail appearance",
+			"platforms": {
+				"android": true
+			}
+		},
+		{
+			"type": "BoolSetting",
+			"name": "Enabled",
+			"key": "cube-enabled",
+			"description": "Enable custom Cube trail",
+			"default": false,
+			"platforms": {
+				"android": true
+			}
+		},
+		{
+			"type": "FloatSetting",
+			"name": "Length",
+			"key": "cube-length",
+			"description": "Cube trail length (fade time in seconds)",
+			"default": 0.5,
+			"min": 0.1,
+			"max": 3.0,
+			"slider": true,
+			"platforms": {
+				"android": true
+			}
+		},
+		{
+			"type": "FloatSetting",
+			"name": "Width",
+			"key": "cube-width",
+			"description": "Cube trail width (stroke)",
+			"default": 5.0,
+			"min": 1.0,
+			"max": 20.0,
+			"slider": true,
+			"platforms": {
+				"android": true
+			}
+		},
+		{
+			"type": "FloatSetting",
+			"name": "Opacity",
+			"key": "cube-opacity",
+			"description": "Cube trail opacity (0-1)",
+			"default": 1.0,
+			"min": 0.0,
+			"max": 1.0,
+			"slider": true,
+			"platforms": {
+				"android": true
+			}
+		},
+		{
+			"type": "Color3BSetting",
+			"name": "Color",
+			"key": "cube-color",
+			"description": "Cube trail color",
+			"default": [255, 255, 255],
+			"platforms": {
+				"android": true
+			}
+		},
+		{
+			"type": "BoolSetting",
+			"name": "No Pulse",
+			"key": "cube-no-pulse",
+			"description": "Disable pulse effects on Cube trail",
+			"default": false,
+			"platforms": {
+				"android": true
+			}
+		},
+		{
+			"type": "TitleSetting",
+			"name": "UFO Trail Settings",
+			"description": "Customize UFO trail appearance",
+			"platforms": {
+				"android": true
+			}
+		},
+		{
+			"type": "BoolSetting",
+			"name": "Enabled",
+			"key": "ufo-enabled",
+			"description": "Enable custom UFO trail",
+			"default": false,
+			"platforms": {
+				"android": true
+			}
+		},
+		{
+			"type": "FloatSetting",
+			"name": "Length",
+			"key": "ufo-length",
+			"description": "UFO trail length (fade time in seconds)",
+			"default": 0.5,
+			"min": 0.1,
+			"max": 3.0,
+			"slider": true,
+			"platforms": {
+				"android": true
+			}
+		},
+		{
+			"type": "FloatSetting",
+			"name": "Width",
+			"key": "ufo-width",
+			"description": "UFO trail width (stroke)",
+			"default": 5.0,
+			"min": 1.0,
+			"max": 20.0,
+			"slider": true,
+			"platforms": {
+				"android": true
+			}
+		},
+		{
+			"type": "FloatSetting",
+			"name": "Opacity",
+			"key": "ufo-opacity",
+			"description": "UFO trail opacity (0-1)",
+			"default": 1.0,
+			"min": 0.0,
+			"max": 1.0,
+			"slider": true,
+			"platforms": {
+				"android": true
+			}
+		},
+		{
+			"type": "Color3BSetting",
+			"name": "Color",
+			"key": "ufo-color",
+			"description": "UFO trail color",
+			"default": [255, 255, 255],
+			"platforms": {
+				"android": true
+			}
+		},
+		{
+			"type": "BoolSetting",
+			"name": "No Pulse",
+			"key": "ufo-no-pulse",
+			"description": "Disable pulse effects on UFO trail",
+			"default": false,
+			"platforms": {
+				"android": true
+			}
+		},
+		{
+			"type": "TitleSetting",
+			"name": "Ball Trail Settings",
+			"description": "Customize Ball trail appearance",
+			"platforms": {
+				"android": true
+			}
+		},
+		{
+			"type": "BoolSetting",
+			"name": "Enabled",
+			"key": "ball-enabled",
+			"description": "Enable custom Ball trail",
+			"default": false,
+			"platforms": {
+				"android": true
+			}
+		},
+		{
+			"type": "FloatSetting",
+			"name": "Length",
+			"key": "ball-length",
+			"description": "Ball trail length (fade time in seconds)",
+			"default": 0.5,
+			"min": 0.1,
+			"max": 3.0,
+			"slider": true,
+			"platforms": {
+				"android": true
+			}
+		},
+		{
+			"type": "FloatSetting",
+			"name": "Width",
+			"key": "ball-width",
+			"description": "Ball trail width (stroke)",
+			"default": 5.0,
+			"min": 1.0,
+			"max": 20.0,
+			"slider": true,
+			"platforms": {
+				"android": true
+			}
+		},
+		{
+			"type": "FloatSetting",
+			"name": "Opacity",
+			"key": "ball-opacity",
+			"description": "Ball trail opacity (0-1)",
+			"default": 1.0,
+			"min": 0.0,
+			"max": 1.0,
+			"slider": true,
+			"platforms": {
+				"android": true
+			}
+		},
+		{
+			"type": "Color3BSetting",
+			"name": "Color",
+			"key": "ball-color",
+			"description": "Ball trail color",
+			"default": [255, 255, 255],
+			"platforms": {
+				"android": true
+			}
+		},
+		{
+			"type": "BoolSetting",
+			"name": "No Pulse",
+			"key": "ball-no-pulse",
+			"description": "Disable pulse effects on Ball trail",
+			"default": false,
+			"platforms": {
+				"android": true
+			}
+		},
+		{
+			"type": "TitleSetting",
+			"name": "Robot Trail Settings",
+			"description": "Customize Robot trail appearance",
+			"platforms": {
+				"android": true
+			}
+		},
+		{
+			"type": "BoolSetting",
+			"name": "Enabled",
+			"key": "robot-enabled",
+			"description": "Enable custom Robot trail",
+			"default": false,
+			"platforms": {
+				"android": true
+			}
+		},
+		{
+			"type": "FloatSetting",
+			"name": "Length",
+			"key": "robot-length",
+			"description": "Robot trail length (fade time in seconds)",
+			"default": 0.5,
+			"min": 0.1,
+			"max": 3.0,
+			"slider": true,
+			"platforms": {
+				"android": true
+			}
+		},
+		{
+			"type": "FloatSetting",
+			"name": "Width",
+			"key": "robot-width",
+			"description": "Robot trail width (stroke)",
+			"default": 5.0,
+			"min": 1.0,
+			"max": 20.0,
+			"slider": true,
+			"platforms": {
+				"android": true
+			}
+		},
+		{
+			"type": "FloatSetting",
+			"name": "Opacity",
+			"key": "robot-opacity",
+			"description": "Robot trail opacity (0-1)",
+			"default": 1.0,
+			"min": 0.0,
+			"max": 1.0,
+			"slider": true,
+			"platforms": {
+				"android": true
+			}
+		},
+		{
+			"type": "Color3BSetting",
+			"name": "Color",
+			"key": "robot-color",
+			"description": "Robot trail color",
+			"default": [255, 255, 255],
+			"platforms": {
+				"android": true
+			}
+		},
+		{
+			"type": "BoolSetting",
+			"name": "No Pulse",
+			"key": "robot-no-pulse",
+			"description": "Disable pulse effects on Robot trail",
+			"default": false,
+			"platforms": {
+				"android": true
+			}
+		},
+		{
+			"type": "TitleSetting",
+			"name": "Spider Trail Settings",
+			"description": "Customize Spider trail appearance",
+			"platforms": {
+				"android": true
+			}
+		},
+		{
+			"type": "BoolSetting",
+			"name": "Enabled",
+			"key": "spider-enabled",
+			"description": "Enable custom Spider trail",
+			"default": false,
+			"platforms": {
+				"android": true
+			}
+		},
+		{
+			"type": "FloatSetting",
+			"name": "Length",
+			"key": "spider-length",
+			"description": "Spider trail length (fade time in seconds)",
+			"default": 0.5,
+			"min": 0.1,
+			"max": 3.0,
+			"slider": true,
+			"platforms": {
+				"android": true
+			}
+		},
+		{
+			"type": "FloatSetting",
+			"name": "Width",
+			"key": "spider-width",
+			"description": "Spider trail width (stroke)",
+			"default": 5.0,
+			"min": 1.0,
+			"max": 20.0,
+			"slider": true,
+			"platforms": {
+				"android": true
+			}
+		},
+		{
+			"type": "FloatSetting",
+			"name": "Opacity",
+			"key": "spider-opacity",
+			"description": "Spider trail opacity (0-1)",
+			"default": 1.0,
+			"min": 0.0,
+			"max": 1.0,
+			"slider": true,
+			"platforms": {
+				"android": true
+			}
+		},
+		{
+			"type": "Color3BSetting",
+			"name": "Color",
+			"key": "spider-color",
+			"description": "Spider trail color",
+			"default": [255, 255, 255],
+			"platforms": {
+				"android": true
+			}
+		},
+		{
+			"type": "BoolSetting",
+			"name": "No Pulse",
+			"key": "spider-no-pulse",
+			"description": "Disable pulse effects on Spider trail",
+			"default": false,
+			"platforms": {
+				"android": true
+			}
+		},
+		{
+			"type": "TitleSetting",
+			"name": "Presets",
+			"description": "Save and load trail configurations",
+			"platforms": {
+				"android": true
+			}
+		},
+		{
+			"type": "StringSetting",
+			"name": "Current Preset",
+			"key": "current-preset",
+			"description": "Currently active preset name",
+			"default": "default",
+			"platforms": {
+				"android": true
+			}
+		},
+		{
+			"type": "ButtonSetting",
+			"name": "Save Preset",
+			"key": "save-preset",
+			"description": "Save current settings as a preset",
+			"platforms": {
+				"android": true
+			}
+		},
+		{
+			"type": "ButtonSetting",
+			"name": "Load Preset",
+			"key": "load-preset",
+			"description": "Load settings from selected preset",
+			"platforms": {
+				"android": true
+			}
+		},
+		{
+			"type": "ButtonSetting",
+			"name": "Delete Preset",
+			"key": "delete-preset",
+			"description": "Delete selected preset",
+			"platforms": {
+				"android": true
+			}
+		}
+	]
+}
