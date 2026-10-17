@@ -1,0 +1,49 @@
+name: Build Trail Lab for Android
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  build-android:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Android NDK
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y openjdk-17-jdk wget unzip
+          wget -q https://dl.google.com/android/repository/android-ndk-r25c-linux.zip -O ndk.zip
+          unzip -q ndk.zip
+          echo "ANDROID_NDK_ROOT=$GITHUB_WORKSPACE/android-ndk-r25c" >> $GITHUB_ENV
+          echo "ANDROID_NDK_HOME=$GITHUB_WORKSPACE/android-ndk-r25c" >> $GITHUB_ENV
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get install -y cmake ninja-build git curl zip
+
+      - name: Download Geode CLI
+        run: |
+          curl -L -o geode-cli.zip https://github.com/geode-sdk/cli/releases/download/v3.9.0/geode-cli-v3.9.0-linux.zip
+          unzip -q geode-cli.zip
+          chmod +x geode
+          echo "$GITHUB_WORKSPACE" >> $GITHUB_PATH
+
+      - name: Install Geode Android binaries
+        run: |
+          geode sdk install-binaries -p android64 || true
+
+      - name: Build mod for Android ARM64
+        run: |
+          geode build -p android64
+
+      - name: Upload .geode artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: trail-lab-android64
+          path: |
+            **/*.geode
+            build-android64/*.geode
